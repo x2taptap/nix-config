@@ -24,7 +24,10 @@
   10.10.10.2 mainframe
   '';
 
-
+  boot = {
+    kernelModules = [ "kvm-intel" "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
+    kernelParams = [ "pcie_acs_override=downstream" "intel_iommu=on" "intel_iommu=pt" "kvm.ignore_msrs=1" ];
+  };
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -85,7 +88,7 @@
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = [ "networkmanager" "wheel"];
+    extraGroups = [ "networkmanager" "wheel" "user"];
     packages = with pkgs; [
       kdePackages.kate
       
@@ -116,6 +119,8 @@
     htop
     librewolf-bin
     pciutils
+    gparted
+    gnome-disk-utility
     gh
     unrar
     fastfetch
@@ -126,6 +131,8 @@
     pavucontrol
     mangohud
     lutris
+    cage
+    lm_sensors
     protonup
     # Beamng Native Fix
     (pkgs.steam.override {
@@ -211,9 +218,9 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
  };
   hardware.nvidia.prime = {
-	# Make sure to use the correct Bus ID values for your system!
-	intelBusId = "PCI:0:02:0";
-	nvidiaBusId = "PCI:01:0:0";
+    # Make sure to use the correct Bus ID values for your system!
+    intelBusId = "PCI:0:02:0";
+    nvidiaBusId = "PCI:01:0:0";
   };
   hardware.display.edid.packages = [
     (pkgs.runCommand "edid-custom" { } ''
@@ -228,4 +235,11 @@
     KERNEL=="card*", DRIVERS=="i915", SYMLINK+="dri/by-driver/intel-card"
     KERNEL=="card*", DRIVERS=="nvidia", SYMLINK+="dri/by-driver/nvidia-card"
   '';
+
+
+  # Virtualization
+  programs.virt-manager.enable = true;
+  users.groups.libvirtd.members = ["user"];
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 }
