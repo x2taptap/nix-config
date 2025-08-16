@@ -120,6 +120,7 @@
      mangohud
      lutris
      protonup-qt
+
   ];
 
   # Gaming
