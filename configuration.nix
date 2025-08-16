@@ -16,7 +16,7 @@
   # Nix Settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages;
   
   boot.initrd.luks.devices."luks-b6ddb8f1-f96e-49da-8988-9993df8f25fa".device = "/dev/disk/by-uuid/b6ddb8f1-f96e-49da-8988-9993df8f25fa";
   networking.hostName = "yuri"; # Define your hostname.
@@ -134,6 +134,7 @@
     cage
     lm_sensors
     protonup
+    vmware-workstation
     # Beamng Native Fix
     (pkgs.steam.override {
     extraLibraries = pkgs: [pkgs.fontconfig pkgs.nss];
@@ -242,4 +243,5 @@
   users.groups.libvirtd.members = ["user"];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
+  virtualisation.vmware.host.enable = true;
 }
