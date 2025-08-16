@@ -135,6 +135,8 @@
     lm_sensors
     protonup
     vmware-workstation
+    lsfg-vk
+    prismlauncher
     # Beamng Native Fix
     (pkgs.steam.override {
     extraLibraries = pkgs: [pkgs.fontconfig pkgs.nss];
@@ -147,7 +149,7 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
-
+  programs.gamemode.enable = true;
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
   # Fonts
