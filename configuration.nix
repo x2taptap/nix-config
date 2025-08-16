@@ -117,6 +117,7 @@
     librewolf-bin
     pciutils
     gh
+    unrar
     fastfetch
     vscode
     vesktop
@@ -138,6 +139,7 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
+
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
   # Fonts
