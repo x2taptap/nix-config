@@ -16,7 +16,7 @@
   # Nix Settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxKernel.kernels.linux_zen;
 
   boot.initrd.luks.devices."luks-b6ddb8f1-f96e-49da-8988-9993df8f25fa".device = "/dev/disk/by-uuid/b6ddb8f1-f96e-49da-8988-9993df8f25fa";
   networking.hostName = "yuri"; # Define your hostname.
@@ -141,7 +141,7 @@
   environment.variables = {
     LANG = "en_US.UTF-8";
     KWIN_DRM_DEVICES = "/dev/dri/by-driver/nvidia-card:/dev/dri/by-driver/intel-card";
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/Documents/Other/Proton"
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/Documents/Proton";
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
