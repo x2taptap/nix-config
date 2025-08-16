@@ -96,8 +96,7 @@
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "user";
 
-  # Install firefox.
-  programs.firefox.enable = true;
+
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -108,11 +107,26 @@
      vim
      wget
      git
+     librewolf-bin
+     pciutils
      gh
      fastfetch
      vscode
+     vesktop
+     telegram-desktop
+     easyeffects
+     pavucontrol
   ];
 
+  # Fonts
+  fonts.packages = with pkgs; [
+  nerd-fonts.fira-code
+  nerd-fonts.droid-sans-mono
+ ];
+  environment.variables = {
+    LANG = "en_US.UTF-8";
+    KWIN_DRM_DEVICES = "/dev/dri/by-driver/nvidia-card:/dev/dri/by-driver/intel-card";
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
@@ -132,6 +146,14 @@
   # networking.firewall.enable = false;
 
   system.stateVersion = "25.05"; 
+  # Clean Garbage
+  nix.settings.auto-optimise-store = true;
+
+  nix.gc.automatic = true;
+
+  nix.gc.dates = "daily";
+
+  nix.gc.options = "--delete-older-than 7d"; 
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
@@ -179,4 +201,8 @@
     '')
   ];
   hardware.display.outputs."DP-1".edid = "custom1.bin";
+  services.udev.extraRules = ''
+    KERNEL=="card*", DRIVERS=="i915", SYMLINK+="dri/by-driver/intel-card"
+    KERNEL=="card*", DRIVERS=="nvidia", SYMLINK+="dri/by-driver/nvidia-card"
+  '';
 }
