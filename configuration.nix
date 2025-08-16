@@ -108,6 +108,7 @@
      vim
      wget
      git
+     htop
      librewolf-bin
      pciutils
      gh
@@ -120,6 +121,7 @@
      mangohud
      lutris
      protonup-qt
+     cachix
 
   ];
 
@@ -138,6 +140,8 @@
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
     nerd-fonts.ubuntu-mono
+    corefonts
+    vista-fonts
  ];
   environment.variables = {
     LANG = "en_US.UTF-8";
