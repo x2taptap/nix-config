@@ -20,7 +20,9 @@
   
   boot.initrd.luks.devices."luks-b6ddb8f1-f96e-49da-8988-9993df8f25fa".device = "/dev/disk/by-uuid/b6ddb8f1-f96e-49da-8988-9993df8f25fa";
   networking.hostName = "yuri"; # Define your hostname.
-
+  networking.extraHosts = ''
+  10.10.10.2 mainframe
+  '';
 
 
   # Enable networking
