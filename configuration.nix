@@ -85,9 +85,10 @@
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel"];
     packages = with pkgs; [
       kdePackages.kate
+      
     ];
   };
 
@@ -105,27 +106,30 @@
     clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "/home/user/Sources/nix-config";
   };
+
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-     vim
-     wget
-     git
-     htop
-     librewolf-bin
-     pciutils
-     gh
-     fastfetch
-     vscode
-     vesktop
-     telegram-desktop
-     easyeffects
-     pavucontrol
-     mangohud
-     lutris
-     protonup-qt
-
+    vim
+    wget
+    git
+    htop
+    librewolf-bin
+    pciutils
+    gh
+    fastfetch
+    vscode
+    vesktop
+    telegram-desktop
+    easyeffects
+    pavucontrol
+    mangohud
+    lutris
+    protonup
+    # Beamng Native Fix
+    (pkgs.steam.override {
+    extraLibraries = pkgs: [pkgs.fontconfig pkgs.nss];
+    }).run
   ];
-
   # Gaming
   programs.steam = {
     enable = true;
@@ -135,7 +139,6 @@
   };
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
-
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
