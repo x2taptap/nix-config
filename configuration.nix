@@ -20,11 +20,8 @@
 
   boot.initrd.luks.devices."luks-b6ddb8f1-f96e-49da-8988-9993df8f25fa".device = "/dev/disk/by-uuid/b6ddb8f1-f96e-49da-8988-9993df8f25fa";
   networking.hostName = "yuri"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -100,9 +97,13 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/user/Sources/nix-config";
+  };
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
      vim
      wget
@@ -116,16 +117,31 @@
      telegram-desktop
      easyeffects
      pavucontrol
+     mangohud
+     lutris
+     protonup-qt
   ];
+
+  # Gaming
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
 
   # Fonts
   fonts.packages = with pkgs; [
-  nerd-fonts.fira-code
-  nerd-fonts.droid-sans-mono
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.ubuntu-mono
  ];
   environment.variables = {
     LANG = "en_US.UTF-8";
     KWIN_DRM_DEVICES = "/dev/dri/by-driver/nvidia-card:/dev/dri/by-driver/intel-card";
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/Documents/Other/Proton"
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -149,11 +165,6 @@
   # Clean Garbage
   nix.settings.auto-optimise-store = true;
 
-  nix.gc.automatic = true;
-
-  nix.gc.dates = "daily";
-
-  nix.gc.options = "--delete-older-than 7d"; 
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
