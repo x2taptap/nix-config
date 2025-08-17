@@ -137,11 +137,21 @@
     vmware-workstation
     lsfg-vk
     prismlauncher
+    linuxKernel.packages.linux_zen.xone
     # Beamng Native Fix
     (pkgs.steam.override {
     extraLibraries = pkgs: [pkgs.fontconfig pkgs.nss];
     }).run
   ];
+  # Bluetooth
+  hardware.bluetooth = {
+  enable = true;
+  powerOnBoot = true;
+  settings = {
+    General = {
+      Experimental = true; # Show battery charge of Bluetooth devices
+    };
+
   # Gaming
   programs.steam = {
     enable = true;
@@ -149,6 +159,7 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
+  hardware.xone.enable = true;
   programs.gamemode.enable = true;
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
