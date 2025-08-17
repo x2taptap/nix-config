@@ -138,7 +138,7 @@
     lsfg-vk
     prismlauncher
     obs-studio
-    vlc
+    vlc-bin
     linuxKernel.packages.linux_zen.xpadneo
     # Beamng Native Fix
     (pkgs.steam.override {
