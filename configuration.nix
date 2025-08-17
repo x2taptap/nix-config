@@ -1,13 +1,14 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+{ config, pkgs, lib, ... }:
 
-{ config, pkgs, ... }:
+let
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
+in
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      (import "${home-manager}/nixos")
     ];
 
   # Bootloader.
@@ -23,7 +24,12 @@
   networking.extraHosts = ''
   10.10.10.2 mainframe
   '';
-
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowHybridSleep=no
+    AllowSuspendThenHibernate=no
+  '';
   boot = {
     kernelModules = [ "kvm-intel" "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
     kernelParams = [ "pcie_acs_override=downstream" "intel_iommu=on" "intel_iommu=pt" "kvm.ignore_msrs=1" ];
@@ -94,7 +100,14 @@
       
     ];
   };
+  home-manager.users.user = { pkgs, ... }: {
+    home.packages = [ pkgs.atool pkgs.httpie ];
+    programs.bash.enable = true;
 
+    # The state version is required and should stay at the version you
+    # originally installed.
+    home.stateVersion = "25.05";
+  };
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "user";
