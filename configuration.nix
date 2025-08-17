@@ -145,13 +145,9 @@
   ];
   # Bluetooth
   hardware.bluetooth = {
-  enable = true;
-  powerOnBoot = true;
-  settings = {
-    General = {
-      Experimental = true; # Show battery charge of Bluetooth devices
-    };
-
+    enable = true;
+    powerOnBoot = true;
+  }; 
   # Gaming
   programs.steam = {
     enable = true;
