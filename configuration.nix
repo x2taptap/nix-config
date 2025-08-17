@@ -139,7 +139,7 @@
     prismlauncher
     obs-studio
     mpv
-    linuxKernel.packages.linux_zen.xone
+    linuxKernel.packages.linux_zen.xpadneo
     # Beamng Native Fix
     (pkgs.steam.override {
     extraLibraries = pkgs: [pkgs.fontconfig pkgs.nss];
@@ -150,6 +150,7 @@
     enable = true;
     powerOnBoot = true;
   }; 
+
   # Gaming
   programs.steam = {
     enable = true;
@@ -157,7 +158,7 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
-  hardware.xone.enable = true;
+  hardware.xpadneo.enable = true;
   programs.gamemode.enable = true;
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
