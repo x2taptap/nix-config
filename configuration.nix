@@ -137,6 +137,8 @@
     vmware-workstation
     lsfg-vk
     prismlauncher
+    obs-studio
+    mpv
     linuxKernel.packages.linux_zen.xone
     # Beamng Native Fix
     (pkgs.steam.override {
