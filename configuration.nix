@@ -1,14 +1,9 @@
 { config, pkgs, lib, ... }:
 
-let
-  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
-in
-
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      (import "${home-manager}/nixos")
     ];
 
   # Bootloader.
@@ -100,14 +95,7 @@ in
       
     ];
   };
-  home-manager.users.user = { pkgs, ... }: {
-    home.packages = [ pkgs.atool pkgs.httpie ];
-    programs.bash.enable = true;
 
-    # The state version is required and should stay at the version you
-    # originally installed.
-    home.stateVersion = "25.05";
-  };
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "user";
