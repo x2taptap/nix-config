@@ -90,7 +90,7 @@
   users.users.user = {
     isNormalUser = true;
     description = "user";
-    extraGroups = [ "networkmanager" "wheel" "user"];
+    extraGroups = [ "networkmanager" "wheel" "user" "podman"];
     packages = with pkgs; [
       kdePackages.kate
       
@@ -112,7 +112,7 @@
     flake = "/home/user/Sources/nix-config";
   };
 
-  # List packages installed in system profile. To search, run:
+
   
   environment.systemPackages = with pkgs; [
     vim
@@ -137,10 +137,13 @@
     lm_sensors
     protonup
     vmware-workstation
+    distrobox
     lsfg-vk
     prismlauncher
     obs-studio
     vlc
+    rpcs3
+    uxplay
     linuxKernel.packages.linux_zen.xpadneo
     # Beamng Native Fix
     (pkgs.steam.override {
@@ -161,6 +164,7 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
   hardware.xpadneo.enable = true;
+  hardware.steam-hardware.enable = true;
   programs.gamemode.enable = true;
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
@@ -188,7 +192,19 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
+  # Enable Avahi
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;  # printing
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+      userServices = true;
+    };
+  };
+  # i dont have a time to set firewall
+  networking.firewall.enable = lib.mkForce false;
   system.stateVersion = "25.11"; 
   # Clean Garbage
   nix.settings.auto-optimise-store = true;
@@ -215,4 +231,9 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
   virtualisation.vmware.host.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
 }
