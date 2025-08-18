@@ -50,14 +50,25 @@
     LC_TELEPHONE = "pl_PL.UTF-8";
     LC_TIME = "pl_PL.UTF-8";
   };
-
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  programs.hyprland.enable = true; # enable Hyprland
+  programs.dconf.profiles.user.databases = [
+    {
+      settings."org/gnome/desktop/interface" = {
+        gtk-theme = "Adwaita";
+        icon-theme = "Flat-Remix-Red-Dark";
+        font-name = "Noto Sans Medium 11";
+        document-font-name = "Noto Sans Medium 11";
+        monospace-font-name = "Noto Sans Mono Medium 11";
+      };
+    }
+  ];
+  # Enable automatic login for the user.
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "user";
+
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -91,15 +102,8 @@
     isNormalUser = true;
     description = "user";
     extraGroups = [ "networkmanager" "wheel" "user" "podman"];
-    packages = with pkgs; [
-      kdePackages.kate
-      
-    ];
+    packages = with pkgs; [ ];
   };
-
-  # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "user";
 
 
 
@@ -122,6 +126,9 @@
     librewolf-bin
     pciutils
     gparted
+    kitty
+    wofi
+    nautilus
     gnome-disk-utility
     gh
     unrar
@@ -178,7 +185,6 @@
  ];
   environment.variables = {
     LANG = "en_US.UTF-8";
-    KWIN_DRM_DEVICES = "/dev/dri/by-driver/nvidia-card:/dev/dri/by-driver/intel-card";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/Documents/Other/Proton";
   };
   # Some programs need SUID wrappers, can be configured further or are
@@ -219,10 +225,6 @@
     '')
   ];
   hardware.display.outputs."DP-1".edid = "custom1.bin";
-  services.udev.extraRules = ''
-    KERNEL=="card*", DRIVERS=="i915", SYMLINK+="dri/by-driver/intel-card"
-    KERNEL=="card*", DRIVERS=="nvidia", SYMLINK+="dri/by-driver/nvidia-card"
-  '';
 
 
   # Virtualization
