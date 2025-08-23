@@ -29,6 +29,8 @@ with pkgs; [
   vlc
   rpcs3
   uxplay
+  unzip
+  gcc
   gamescope
   linuxKernel.packages.linux_zen.xpadneo
   (obs-studio.override {
