@@ -33,10 +33,11 @@
     nvidiaSettings = true;
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
     hardware.nvidia.prime = {
     # Make sure to use the correct Bus ID values for your system!
     intelBusId = "PCI:0:02:0";
     nvidiaBusId = "PCI:01:0:0";
-    };
+  };
  };
 }
