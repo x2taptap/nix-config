@@ -14,7 +14,7 @@
       config.allowUnfree = true;
     };
   in {
-    yuri = {
+    nixosConfigurations = {
       yuri = lib.nixosSystem {
         inherit system;
         modules = [
