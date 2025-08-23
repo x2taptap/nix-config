@@ -31,6 +31,7 @@ with pkgs; [
   uxplay
   unzip
   gnumake
+  pods
   gcc
   gamescope
   linuxKernel.packages.linux_zen.xpadneo
