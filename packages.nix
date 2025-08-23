@@ -30,6 +30,7 @@ with pkgs; [
   rpcs3
   uxplay
   unzip
+  gnumake
   gcc
   gamescope
   linuxKernel.packages.linux_zen.xpadneo
