@@ -15,7 +15,7 @@
     };
   in {
     yuri = {
-      mojhost = lib.nixosSystem {
+      yuri = lib.nixosSystem {
         inherit system;
         modules = [
           ./configuration.nix
