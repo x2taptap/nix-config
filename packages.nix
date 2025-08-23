@@ -26,12 +26,14 @@ with pkgs; [
   distrobox
   lsfg-vk
   prismlauncher
-  obs-studio
   vlc
   rpcs3
   uxplay
   gamescope
   linuxKernel.packages.linux_zen.xpadneo
+  (obs-studio.override {
+    cudaSupport = true;
+  })
   (steam.override {
     extraLibraries = pkgs: [ pkgs.fontconfig pkgs.nss ];
   }).run

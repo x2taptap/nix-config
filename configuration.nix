@@ -129,6 +129,8 @@
   programs.gamemode.enable = true;
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
+  # Cuda for OBS
+  nixpkgs.config.cudaSupport = true;
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
