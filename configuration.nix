@@ -51,20 +51,9 @@
     LC_TIME = "pl_PL.UTF-8";
   };
   services.xserver.enable = true;
+  # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  programs.hyprland.enable = true; # enable Hyprland
-  programs.dconf.profiles.user.databases = [
-    {
-      settings."org/gnome/desktop/interface" = {
-        gtk-theme = "Adwaita";
-        icon-theme = "Flat-Remix-Red-Dark";
-        font-name = "Noto Sans Medium 11";
-        document-font-name = "Noto Sans Medium 11";
-        monospace-font-name = "Noto Sans Mono Medium 11";
-      };
-    }
-  ];
+  services.desktopManager.plasma6.enable = true;
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "user";
@@ -102,7 +91,9 @@
     isNormalUser = true;
     description = "user";
     extraGroups = [ "networkmanager" "wheel" "user" "podman"];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [
+      kdePackages.kate
+    ];
   };
 
 
@@ -119,43 +110,6 @@
 
   
   environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-    htop
-    librewolf-bin
-    pciutils
-    gparted
-    kitty
-    wofi
-    nautilus
-    gnome-disk-utility
-    gh
-    unrar
-    fastfetch
-    vscode
-    vesktop
-    telegram-desktop
-    easyeffects
-    pavucontrol
-    mangohud
-    lutris
-    cage
-    lm_sensors
-    protonup
-    vmware-workstation
-    distrobox
-    lsfg-vk
-    prismlauncher
-    obs-studio
-    vlc
-    rpcs3
-    uxplay
-    linuxKernel.packages.linux_zen.xpadneo
-    # Beamng Native Fix
-    (pkgs.steam.override {
-    extraLibraries = pkgs: [pkgs.fontconfig pkgs.nss];
-    }).run
   ];
   # Bluetooth
   hardware.bluetooth = {
@@ -186,6 +140,7 @@
   environment.variables = {
     LANG = "en_US.UTF-8";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/Documents/Other/Proton";
+    KWIN_DRM_DEVICES = "/dev/dri/by-driver/nvidia-card:/dev/dri/by-driver/intel-card";
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -226,7 +181,10 @@
   ];
   hardware.display.outputs."DP-1".edid = "custom1.bin";
 
-
+  services.udev.extraRules = ''
+    KERNEL=="card*", DRIVERS=="i915", SYMLINK+="dri/by-driver/intel-card"
+    KERNEL=="card*", DRIVERS=="nvidia", SYMLINK+="dri/by-driver/nvidia-card"
+  '';
   # Virtualization
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = ["user"];
@@ -238,4 +196,5 @@
     dockerCompat = true;
     defaultNetwork.settings.dns_enabled = true;
   };
+  
 }
