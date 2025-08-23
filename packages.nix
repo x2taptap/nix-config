@@ -1,6 +1,11 @@
 { pkgs }:
 
 with pkgs; [
+  adwaita-icon-theme
+  adwaita-fonts
+  gnomeExtensions.blur-my-shell
+  gnome-tweaks
+  adw-gtk3
   vim
   wget
   git

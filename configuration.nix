@@ -140,7 +140,6 @@
   environment.variables = {
     LANG = "en_US.UTF-8";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/Documents/Other/Proton";
-    KWIN_DRM_DEVICES = "/dev/dri/by-driver/nvidia-card:/dev/dri/by-driver/intel-card";
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
