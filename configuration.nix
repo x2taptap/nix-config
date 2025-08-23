@@ -52,8 +52,8 @@
   };
   services.xserver.enable = true;
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "user";
@@ -140,6 +140,7 @@
   environment.variables = {
     LANG = "en_US.UTF-8";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/Documents/Other/Proton";
+    KWIN_DRM_DEVICES = "/dev/dri/by-driver/nvidia-card:/dev/dri/by-driver/intel-card";
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
