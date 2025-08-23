@@ -1,5 +1,5 @@
 {
-  description = "Nix Flake";
+  description = "Yuri Flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -13,6 +13,8 @@
       inherit system;
       config.allowUnfree = true;
     };
+
+    packages = import ./packages.nix { inherit pkgs; };
   in {
     nixosConfigurations = {
       yuri = lib.nixosSystem {
@@ -21,43 +23,7 @@
           ./configuration.nix
           {
             nixpkgs.config.allowUnfree = true;
-
-            environment.systemPackages = with pkgs; [
-              vim
-              wget
-              git
-              htop
-              librewolf-bin
-              pciutils
-              gparted
-              gnome-disk-utility
-              gh
-              unrar
-              fastfetch
-              vscode
-              vesktop
-              telegram-desktop
-              easyeffects
-              pavucontrol
-              mangohud
-              lutris
-              cage
-              lm_sensors
-              protonup
-              vmware-workstation
-              distrobox
-              lsfg-vk
-              prismlauncher
-              obs-studio
-              vlc
-              rpcs3
-              uxplay
-              gamescope
-              linuxKernel.packages.linux_zen.xpadneo
-              (pkgs.steam.override {
-                extraLibraries = pkgs: [ pkgs.fontconfig pkgs.nss ];
-              }).run
-            ];
+            environment.systemPackages = packages;
           }
         ];
       };
