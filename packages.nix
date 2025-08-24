@@ -35,7 +35,7 @@ with pkgs; [
   gcc
   gamescope
   protontricks
-  freecad
+  blender
   linuxKernel.packages.linux_zen.xpadneo
   wineWowPackages.stable
   (obs-studio.override {
