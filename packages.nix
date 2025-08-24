@@ -34,7 +34,10 @@ with pkgs; [
   pods
   gcc
   gamescope
+  protontricks
+  freecad
   linuxKernel.packages.linux_zen.xpadneo
+  wineWowPackages.stable
   (obs-studio.override {
     cudaSupport = true;
   })
