@@ -49,7 +49,7 @@
     LC_TELEPHONE = "pl_PL.UTF-8";
     LC_TIME = "pl_PL.UTF-8";
   };
-  # Enable the KDE Plasma Desktop Environment.
+  services.displayManager.sddm.wayland.enable
   services.displayManager.sddm.enable = true;
   programs.hyprland.enable = true; # enable Hyprland
   # Enable automatic login for the user.
