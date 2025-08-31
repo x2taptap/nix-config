@@ -32,6 +32,9 @@ with pkgs; [
   gnumake
   pods
   gcc
+  ghostty
+  wofi
+  dolphin
   gamescope
   protontricks
   blender

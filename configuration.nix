@@ -49,10 +49,9 @@
     LC_TELEPHONE = "pl_PL.UTF-8";
     LC_TIME = "pl_PL.UTF-8";
   };
-  services.xserver.enable = true;
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  programs.hyprland.enable = true; # enable Hyprland
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "user";
@@ -90,9 +89,6 @@
     isNormalUser = true;
     description = "user";
     extraGroups = [ "networkmanager" "wheel" "user" "podman"];
-    packages = with pkgs; [
-      kdePackages.kate
-    ];
   };
 
 
