@@ -22,7 +22,6 @@ with pkgs; [
   cage
   lm_sensors
   protonup
-  vmware-workstation
   distrobox
   lsfg-vk
   prismlauncher
@@ -38,9 +37,6 @@ with pkgs; [
   blender
   linuxKernel.packages.linux_zen.xpadneo
   wineWowPackages.stable
-  (obs-studio.override {
-    cudaSupport = true;
-  })
   (steam.override {
     extraLibraries = pkgs: [ pkgs.fontconfig pkgs.nss ];
   }).run

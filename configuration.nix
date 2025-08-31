@@ -15,7 +15,6 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_zen;
   
-  boot.initrd.luks.devices."luks-b6ddb8f1-f96e-49da-8988-9993df8f25fa".device = "/dev/disk/by-uuid/b6ddb8f1-f96e-49da-8988-9993df8f25fa";
   networking.hostName = "yuri"; # Define your hostname.
   networking.extraHosts = ''
   10.10.10.2 mainframe
@@ -129,8 +128,7 @@
   programs.gamemode.enable = true;
   programs.appimage.enable = true;
   programs.appimage.binfmt = true;
-  # Cuda for OBS
-  nixpkgs.config.cudaSupport = true;
+
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
@@ -193,7 +191,6 @@
   users.groups.libvirtd.members = ["user"];
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
-  virtualisation.vmware.host.enable = true;
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
