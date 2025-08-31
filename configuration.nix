@@ -49,7 +49,7 @@
     LC_TELEPHONE = "pl_PL.UTF-8";
     LC_TIME = "pl_PL.UTF-8";
   };
-  services.displayManager.sddm.wayland.enable
+  services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.enable = true;
   programs.hyprland.enable = true; # enable Hyprland
   # Enable automatic login for the user.
