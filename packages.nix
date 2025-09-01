@@ -29,6 +29,7 @@ with pkgs; [
   rpcs3
   uxplay
   unzip
+  hyprpaper
   gnumake
   pods
   gcc

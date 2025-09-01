@@ -111,7 +111,12 @@
     enable = true;
     powerOnBoot = true;
   }; 
-
+  # Swap
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 16*1024; # 16 GB
+  }];
+  zramSwap.enable = true;
   # Gaming
   programs.steam = {
     enable = true;
@@ -136,7 +141,6 @@
   environment.variables = {
     LANG = "en_US.UTF-8";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/Documents/Other/Proton";
-    KWIN_DRM_DEVICES = "/dev/dri/by-driver/nvidia-card:/dev/dri/by-driver/intel-card";
     GSK_RENDERER = "ngl";
   };
   # Some programs need SUID wrappers, can be configured further or are
