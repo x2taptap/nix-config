@@ -87,10 +87,11 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.user = {
     isNormalUser = true;
+    shell = pkgs.fish;
     description = "user";
     extraGroups = [ "networkmanager" "wheel" "user" "podman"];
   };
-
+  programs.fish.enable = true;
 
 
   # Allow unfree packages
@@ -135,6 +136,8 @@
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
     nerd-fonts.ubuntu-mono
+    nerd-fonts.iosevka-term
+    iosevka-bin
     corefonts
     vista-fonts
  ];

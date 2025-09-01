@@ -14,7 +14,7 @@ with pkgs; [
   fastfetch
   vscode
   vesktop
-  telegram-desktop
+  materialgram
   easyeffects
   pavucontrol
   mangohud
@@ -41,7 +41,10 @@ with pkgs; [
   blender
   linuxKernel.packages.linux_zen.xpadneo
   wineWowPackages.stable
+  apple-cursor
+  hyprshot
+  hyprls
   (steam.override {
-    extraLibraries = pkgs: [ pkgs.fontconfig pkgs.nss ];
+    extraLibraries = pkgs: [ pkgs.fontconfig pkgs.nss pkgs.glfw];
   }).run
 ]
