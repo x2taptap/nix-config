@@ -23,6 +23,7 @@ with pkgs; [
   lm_sensors
   protonup
   distrobox
+  furmark
   lsfg-vk
   prismlauncher
   vlc

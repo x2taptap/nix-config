@@ -12,7 +12,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   # Nix Settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # Use latest kernel.
+  # Use Zen
   boot.kernelPackages = pkgs.linuxPackages_zen;
   
   networking.hostName = "yuri"; # Define your hostname.
