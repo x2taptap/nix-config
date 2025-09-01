@@ -34,7 +34,7 @@ with pkgs; [
   gcc
   ghostty
   wofi
-  kdePackages.dolphin
+  pcmanfm
   gamescope
   protontricks
   blender
