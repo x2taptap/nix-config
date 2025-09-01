@@ -145,6 +145,13 @@
     LANG = "en_US.UTF-8";
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/Documents/Other/Proton";
     GSK_RENDERER = "ngl";
+    # https://gist.github.com/kRHYME7/1d2574e8f3a4b7ad4059535503ce1eaa
+    GBM_BACKEND = "nvidia-drm";
+    MOZ_ENABLE_WAYLAND = "1";
+    __GL_MaxFramesAllowed = "1";
+    __GL_VRR_ALLOWED = "0";
+    __VK_LAYER_NV_optimus = "NVIDIA_only";
+    AQ_DRM_DEVICES = "/dev/dri/by-driver/intel-card:/dev/dri/by-driver/nvidia-card";
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
