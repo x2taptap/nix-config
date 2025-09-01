@@ -15,6 +15,7 @@ with pkgs; [
   vscode
   vesktop
   materialgram
+  pamixer
   easyeffects
   pavucontrol
   mangohud
@@ -23,7 +24,6 @@ with pkgs; [
   lm_sensors
   protonup
   distrobox
-  furmark
   lsfg-vk
   prismlauncher
   vlc
@@ -36,7 +36,8 @@ with pkgs; [
   gcc
   ghostty
   wofi
-  pcmanfm
+  
+  kdePackages.dolphin
   gamescope
   protontricks
   blender

@@ -5,6 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nvidia-drivers.nix
+      ./waybar/waybar.nix
     ];
 
   # Bootloader.
