@@ -5,7 +5,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nvidia-drivers.nix
-      ./waybar/waybar.nix
     ];
 
   # Bootloader.
@@ -53,6 +52,15 @@
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.enable = true;
   programs.hyprland.enable = true; # enable Hyprland
+  # Flatpak
+  services.flatpak.enable = true;
+  systemd.services.flatpak-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
+  };
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "user";
@@ -138,6 +146,7 @@
     nerd-fonts.droid-sans-mono
     nerd-fonts.ubuntu-mono
     nerd-fonts.iosevka-term
+    font-awesome
     iosevka-bin
     corefonts
     vista-fonts

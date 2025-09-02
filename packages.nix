@@ -36,9 +36,12 @@ with pkgs; [
   gcc
   ghostty
   wofi
-  
+  hyprsunset
+  brightnessctl
+  waybar
   kdePackages.dolphin
   gamescope
+  blueman
   protontricks
   blender
   linuxKernel.packages.linux_zen.xpadneo
