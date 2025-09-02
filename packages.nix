@@ -27,6 +27,7 @@ with pkgs; [
   lsfg-vk
   prismlauncher
   vlc
+  dunst
   rpcs3
   uxplay
   unzip

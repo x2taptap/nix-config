@@ -12,9 +12,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
   # Nix Settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # Use Zen
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  # Use CachyOS kernel from chaotic
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  #Optimalizations
+  services.scx.enable = true;
+  services.scx.scheduler = "scx_rusty";
   
+  boot.kernel.sysctl."vm.max_map_count" = 2147483642;
+
   networking.hostName = "yuri"; # Define your hostname.
   networking.extraHosts = ''
   10.10.10.2 mainframe
