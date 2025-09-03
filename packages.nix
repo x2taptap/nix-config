@@ -28,8 +28,12 @@ with pkgs; [
   prismlauncher
   vlc
   dunst
+  qbittorrent
   rpcs3
   uxplay
+  oversteer
+  kdePackages.gwenview
+  notesnook
   unzip
   hyprpaper
   gnumake

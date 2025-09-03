@@ -14,6 +14,9 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Use CachyOS kernel from chaotic
   boot.kernelPackages = pkgs.linuxPackages_cachyos;
+
+  # Driving Wheel
+  boot.extraModulePackages = with config.boot.kernelPackages; [new-lg4ff];
   # Performance
   services.scx.enable = true;
   services.scx.scheduler = "scx_rusty";
