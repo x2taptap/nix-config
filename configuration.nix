@@ -36,7 +36,7 @@
   '';
   boot = {
     kernelModules = [ "kvm-intel" "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
-    kernelParams = [ "pcie_acs_override=downstream" "intel_iommu=on" "intel_iommu=pt" "kvm.ignore_msrs=1" ];
+    kernelParams = [ "pcie_acs_override=downstream" "intel_iommu=on" "intel_iommu=pt" "kvm.ignore_msrs=1" "vfio_iommu_type1.allow_unsafe_interrupts=1"];
   };
   # Enable networking
   networking.networkmanager.enable = true;
