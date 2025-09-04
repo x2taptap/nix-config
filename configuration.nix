@@ -5,6 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./nvidia-drivers.nix
+      ./qemu-hooks.nix
     ];
 
   # Bootloader.
@@ -172,7 +173,7 @@
     __VK_LAYER_NV_optimus = "NVIDIA_only";
     WLR_NO_HARDWARE_CURSORS = "1";
     AQ_FORCE_LINEAR_BLIT = "0";
-    AQ_DRM_DEVICES = "/dev/dri/by-driver/nvidia-card:/dev/dri/by-driver/intel-card";
+    # AQ_DRM_DEVICES = "/dev/dri/by-driver/nvidia-card:/dev/dri/by-driver/intel-card";
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
