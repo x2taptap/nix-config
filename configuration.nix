@@ -72,7 +72,9 @@
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "user";
-
+  # Keyring
+  services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true; 
 
   # Configure keymap in X11
   services.xserver.xkb = {

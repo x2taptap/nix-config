@@ -45,7 +45,7 @@ with pkgs; [
   brightnessctl
   waybar
   kdePackages.dolphin
-  gamescope
+  kdePackages.kio-extras
   blueman
   protontricks
   blender

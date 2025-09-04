@@ -23,6 +23,10 @@
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
+  fileSystems."/mnt/Cherry" =
+    { device = "/dev/disk/by-uuid/2127f4db-52a9-40c7-ac98-ae94facc7f37";
+      fsType = "ext4";
+    };
 
   swapDevices = [ ];
 

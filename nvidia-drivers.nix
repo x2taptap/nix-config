@@ -21,6 +21,8 @@
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
     powerManagement.finegrained = false;
 
+
+
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
     # Support is limited to the Turing and later architectures. Full list of 
@@ -38,6 +40,8 @@
     # Make sure to use the correct Bus ID values for your system!
     intelBusId = "PCI:0:02:0";
     nvidiaBusId = "PCI:01:0:0";
+    offload.enable = true;
+    offload.enableOffloadCmd = true;
   };
   
 }
