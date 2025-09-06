@@ -21,7 +21,17 @@
   # Performance
   services.scx.enable = true;
   services.scx.scheduler = "scx_lavd";
-  
+  # TLP
+  services.tlp.enable = true;
+  services.power-profiles-daemon.enable = false;
+  # Trying Stuff With Wifi
+  networking.networkmanager.wifi.powersave = false;
+  services.resolved.enable = true;
+  services.resolved.dnssec = "allow-downgrade";
+  # Don't Do it
+  boot.extraModprobeConfig = ''
+    options cfg80211 ieee80211_regdom="US"
+  '';
   boot.kernel.sysctl."vm.max_map_count" = 2147483642;
 
   networking.hostName = "yuri"; # Define your hostname.
@@ -36,7 +46,7 @@
   '';
   boot = {
     kernelModules = [ "kvm-intel" "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
-    kernelParams = [ "pcie_acs_override=downstream" "intel_iommu=on" "intel_iommu=pt" "kvm.ignore_msrs=1" "vfio_iommu_type1.allow_unsafe_interrupts=1" "mitigations=off"];
+    kernelParams = [ "pcie_acs_override=downstream" "intel_iommu=on" "intel_iommu=pt" "kvm.ignore_msrs=1" "vfio_iommu_type1.allow_unsafe_interrupts=1" "mitigations=off" "iwlwifi.power_save=0" "iwlwifi.uapsd_disable=1"];
   };
   # Enable networking
   networking.networkmanager.enable = true;
@@ -129,13 +139,10 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-  }; 
-  # Swap
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 16*1024; # 16 GB
-  }];
+  };
+  # Zram
   zramSwap.enable = true;
+  zramSwap.swapSize = 16 * 1024;
   # Gaming
   programs.steam = {
     enable = true;
