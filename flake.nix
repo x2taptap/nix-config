@@ -19,8 +19,6 @@
         chaotic.overlays.default
       ];
     };
-
-    packages = import ./packages.nix { inherit pkgs; };
   in {
     nixosConfigurations = {
       yuri = lib.nixosSystem {
@@ -30,7 +28,6 @@
           chaotic.nixosModules.default # Add Chaotic Nyx module
           {
             nixpkgs.config.allowUnfree = true;
-            environment.systemPackages = packages;
           }
         ];
       };
