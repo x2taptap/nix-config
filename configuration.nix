@@ -6,13 +6,6 @@
       # Hardware
       ./hardware-configuration.nix
       ./nvidia-drivers.nix
-      # Packages
-      ./packages/apps.nix
-      ./packages/gaming.nix
-      ./packages/media.nix
-      ./packages/other.nix
-      ./packages/tools.nix
-      ./packages/virtualization.nix
       # Other
       ./other/qemu-hooks.nix
     ];
@@ -43,6 +36,18 @@
   '';
   boot.kernel.sysctl."vm.max_map_count" = 2147483642;
 
+
+  # Packages
+  environment.systemPackages = 
+    (import ./packages/apps.nix { inherit pkgs; }) ++
+    (import ./packages/gaming.nix { inherit pkgs; }) ++
+    (import ./packages/media.nix { inherit pkgs; }) ++
+    (import ./packages/other.nix { inherit pkgs; }) ++
+    (import ./packages/tools.nix { inherit pkgs; }) ++
+    (import ./packages/virtualization.nix { inherit pkgs; }) ++
+    [
+      # Additional packages
+    ];
   networking.hostName = "yuri"; # Define your hostname.
   networking.extraHosts = ''
   10.10.10.2 mainframe
