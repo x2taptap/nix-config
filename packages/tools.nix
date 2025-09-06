@@ -7,6 +7,7 @@ with pkgs; [
   htop
   pciutils
   gparted
+  acpica-tools
   gnome-disk-utility
   gh
   unrar
