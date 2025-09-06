@@ -131,10 +131,6 @@
     flake = "/home/user/Sources/nix-config";
   };
 
-
-  
-  environment.systemPackages = with pkgs; [
-  ];
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
@@ -181,8 +177,6 @@
     enable = true;
     enableSSHSupport = true;
   };
-
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   # Enable Avahi
