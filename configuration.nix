@@ -13,14 +13,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
   # Nix Settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # Use CachyOS kernel from chaotic
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  # Use Zen Currently Cachy from chaotic is broken due linux-pam
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Driving Wheel
   boot.extraModulePackages = with config.boot.kernelPackages; [new-lg4ff];
   # Performance
   services.scx.enable = true;
-  services.scx.scheduler = "scx_rusty";
+  services.scx.scheduler = "scx_lavd";
   
   boot.kernel.sysctl."vm.max_map_count" = 2147483642;
 
@@ -36,7 +36,7 @@
   '';
   boot = {
     kernelModules = [ "kvm-intel" "vfio_virqfd" "vfio_pci" "vfio_iommu_type1" "vfio" ];
-    kernelParams = [ "pcie_acs_override=downstream" "intel_iommu=on" "intel_iommu=pt" "kvm.ignore_msrs=1" "vfio_iommu_type1.allow_unsafe_interrupts=1"];
+    kernelParams = [ "pcie_acs_override=downstream" "intel_iommu=on" "intel_iommu=pt" "kvm.ignore_msrs=1" "vfio_iommu_type1.allow_unsafe_interrupts=1" "mitigations=off"];
   };
   # Enable networking
   networking.networkmanager.enable = true;
@@ -60,7 +60,7 @@
   };
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.enable = true;
-  programs.hyprland.enable = true; # enable Hyprland
+  
   # Flatpak
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {
@@ -73,9 +73,7 @@
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "user";
-  # Keyring
-  services.gnome.gnome-keyring.enable = true;
-  programs.seahorse.enable = true; 
+  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -167,12 +165,6 @@
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/user/Documents/Other/Proton";
     GSK_RENDERER = "ngl";
     # https://gist.github.com/kRHYME7/1d2574e8f3a4b7ad4059535503ce1eaa
-    MOZ_ENABLE_WAYLAND = "1";
-    __GL_MaxFramesAllowed = "1";
-    __GL_VRR_ALLOWED = "0";
-    __VK_LAYER_NV_optimus = "NVIDIA_only";
-    WLR_NO_HARDWARE_CURSORS = "1";
-    AQ_FORCE_LINEAR_BLIT = "0";
     # AQ_DRM_DEVICES = "/dev/dri/by-driver/nvidia-card:/dev/dri/by-driver/intel-card";
   };
   # Some programs need SUID wrappers, can be configured further or are
@@ -214,10 +206,10 @@
   ];
   hardware.display.outputs."DP-1".edid = "custom1.bin";
 
-  services.udev.extraRules = ''
-    KERNEL=="card*", DRIVERS=="i915", SYMLINK+="dri/by-driver/intel-card"
-    KERNEL=="card*", DRIVERS=="nvidia", SYMLINK+="dri/by-driver/nvidia-card"
-  '';
+  # services.udev.extraRules = ''
+  #   KERNEL=="card*", DRIVERS=="i915", SYMLINK+="dri/by-driver/intel-card"
+  #   KERNEL=="card*", DRIVERS=="nvidia", SYMLINK+="dri/by-driver/nvidia-card"
+  # '';
   # Virtualization
   programs.virt-manager.enable = true;
   users.groups.libvirtd.members = ["user"];

@@ -32,28 +32,19 @@ with pkgs; [
   rpcs3
   uxplay
   oversteer
-  kdePackages.gwenview
   notesnook
   unzip
   hyprpaper
   gnumake
   pods
   gcc
-  ghostty
-  wofi
-  hyprsunset
-  brightnessctl
   waybar
-  kdePackages.dolphin
-  kdePackages.kio-extras
-  blueman
   protontricks
   blender
   linuxKernel.packages.linux_zen.xpadneo
   wineWowPackages.stable
   apple-cursor
-  hyprshot
-  hyprls
+  wl-clipboard # Command-line copy/paste utilities for Wayland
   (steam.override {
     extraLibraries = pkgs: [ pkgs.fontconfig pkgs.nss pkgs.glfw];
   }).run
