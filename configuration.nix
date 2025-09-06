@@ -2,10 +2,19 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
+      # Hardware
       ./hardware-configuration.nix
       ./nvidia-drivers.nix
-      ./qemu-hooks.nix
+      # Packages
+      ./packages/apps.nix
+      ./packages/gaming.nix
+      ./packages/media.nix
+      ./packages/other.nix
+      ./packages/tools.nix
+      ./packages/virtualization.nix
+      # Other
+      ./other/qemu-hooks.nix
     ];
 
   # Bootloader.
@@ -13,7 +22,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   # Nix Settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # Use Zen Currently Cachy from chaotic is broken due linux-pam
+  # Use Zen 
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Driving Wheel
