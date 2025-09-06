@@ -136,9 +136,12 @@
     enable = true;
     powerOnBoot = true;
   };
-  # Zram
+  # Swap
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 8*1024; # 8 GB
+  }];
   zramSwap.enable = true;
-  zramSwap.swapSize = 16 * 1024;
   # Gaming
   programs.steam = {
     enable = true;
